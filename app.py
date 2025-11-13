@@ -5,7 +5,7 @@ import os
 from time import sleep
 import logging
 from src import db
-#from src import app01
+from src import logger
 
 load_dotenv()
 
