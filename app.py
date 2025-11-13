@@ -5,7 +5,7 @@ import os
 from time import sleep
 import logging
 from src import db
-from src import app01
+#from src import app01
 
 load_dotenv()
 
@@ -37,11 +37,11 @@ def notifications(number, status):
         try:
             Bot.send_message(id, my_text, parse_mode="HTML")
             if app_debug == "1":
-                app01.logger.info(f'[BOT] [UserID: {id}] Сообщение отправлено')
+                logger.info(f'[BOT] [UserID: {id}] Сообщение отправлено')
         except Exception as my_error:
             print(f"Ошибка: {my_error}")
             if app_debug == "1":
-                app01.logger.error(f'[BOT] Ошибка: {my_error}')
+                logger.error(f'[BOT] Ошибка: {my_error}')
 
 
 # Настройка команд бота
@@ -81,7 +81,7 @@ def send_welcome(message):
             Bot.send_message(user_id, f"Твой ID: {user_id}")
 
     if app_debug == "1":
-        app01.logger.info(f'[BOT] [UserID: {user_id}] Сообщение отправлено')
+        logger.info(f'[BOT] [UserID: {user_id}] Сообщение отправлено')
 
 # Обработка команды /id
 @Bot.message_handler(commands=['id'])
@@ -108,11 +108,11 @@ def command_admin(message):
         Bot.send_message(user_id, f"✅ UserID: {manager_id} Права админа, выданы")
         Bot.send_message(manager_id, "✅ Доступ получен!\nТеперь я буду уведомлять тебя о звонках на номер taxi")
         if app_debug == "1":
-            app01.logger.info(f'[BOT] [UserID: {user_id}] Добавил менеджера {manager_id}')
+            logger.info(f'[BOT] [UserID: {user_id}] Добавил менеджера {manager_id}')
     else:
         Bot.send_message(user_id, "❌ У Вас нет прав администратора")
         if app_debug == "1":
-            app01.logger.info(f'[BOT] [UserID: {user_id}] не имеет права админ')
+            logger.info(f'[BOT] [UserID: {user_id}] не имеет права админ')
 
 # Запуск Бота
 if __name__ == '__main__':
@@ -124,9 +124,9 @@ if __name__ == '__main__':
             Bot.polling(none_stop=True, interval=0,  timeout=60) 
         except Exception as my_bot_error:
             Bot.send_message(admins_id, f"Ошибка: {my_bot_error}") # отправляем сообщение админу
-            app01.logger.info(f'[BOT] startup, Ждем 10 секунд ........')
+            logger.info(f'[BOT] startup, Ждем 10 секунд ........')
             sleep(10) #ждем 10 сек
-            app01.logger.info(f'[BOT] упал отжался и встал')
+            logger.info(f'[BOT] упал отжался и встал')
             # отправляем сообщение админу
             Bot.send_message(admins_id, "Bot упал отжался и встал") # отправляем сообщение админу
     

@@ -4,7 +4,7 @@ import os
 from mysql.connector import MySQLConnection, Error  # Добавляем функцию MySQLConnection
 from dotenv import load_dotenv
 from time import time
-from src import app01
+
 #import logging
 
 # устанавливаем стандартные параметры логирования
@@ -47,10 +47,10 @@ def set_user_id(user_id, full_name, admin):
         conn.commit()  # Подтверждаем изменения
         cursor.close()  # Закрываем курсор
         conn.close()  # Закрываем соединение
-        app01.logger.info(f"[DB] Новый пользователь: {user_id}. Добавлен")
+        logger.info(f"[DB] Новый пользователь: {user_id}. Добавлен")
     except Error as error:
         #print(error)
-        app01.logger.error(f"[DB] Новый пользователь: {user_id}. Ошибка: {error}")
+        logger.error(f"[DB] Новый пользователь: {user_id}. Ошибка: {error}")
     
 
 def is_user_exists(user_id):
@@ -68,9 +68,9 @@ def is_user_exists(user_id):
             status = None
         cursor.close()
         conn.close()  # Закрываем соединение
-        app01.logger.info(f"[DB] [is_user_exists] UserID: {user_id}. Информация получено")
+        logger.info(f"[DB] [is_user_exists] UserID: {user_id}. Информация получено")
     except Error as error:
-        app01.logger.error(f"[DB] UserID: {user_id}. Ошибка [{error}]")
+        logger.error(f"[DB] UserID: {user_id}. Ошибка [{error}]")
     return status
 
 #получаем id всех пользователей    
@@ -90,10 +90,10 @@ def get_all_users(status):
             all_users=None
         cursor.close()
         conn.close()
-        app01.logger.info(f"[DB] [get_all_users] Информация получено")
+        logger.info(f"[DB] [get_all_users] Информация получено")
     except Exception as e:
         print(e)
-        app01.logger.error(f"[DB] [get_all_users] Ошибка [{e}]")
+        logger.error(f"[DB] [get_all_users] Ошибка [{e}]")
     return all_users
 
     
@@ -108,8 +108,8 @@ def set_admin(user_id, status):
         conn.commit()  # Подтверждаем изменения
         cursor.close()  # Закрываем курсор
         conn.close()  # Закрываем соединение
-        app01.logger.info(f"[DB] [set_admin] права админа выданы. UserID: {user_id}")
+        logger.info(f"[DB] [set_admin] права админа выданы. UserID: {user_id}")
     except Error as error:
         print("set_admin:", error)
-        app01.logger.error(f"[DB] [set_admin] Ошибка: {error}")
+        logger.error(f"[DB] [set_admin] Ошибка: {error}")
     
