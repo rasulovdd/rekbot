@@ -38,10 +38,11 @@ Database: mysql<br/>
     ```
 
 5. Изменить в скрипте mysql-setup.sh следующие параметры: <br/>
-    
+    ```
     Пользователь: bot_user
     Пароль: bot_password1!
     База данных: rekbot
+    ```
 
 6. Запустить скрипт mysql-setup.sh<br/>
     даем права 
@@ -50,7 +51,7 @@ Database: mysql<br/>
     ```
     запускаем скрипт
     ```bash
-    mysql-setup.sh
+    ./mysql-setup.sh
     ```
 
 7. Создаем .env файл с вашими данными, можно создать из шаблона и просто поправить поля <br/>
