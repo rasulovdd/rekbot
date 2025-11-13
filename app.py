@@ -81,12 +81,13 @@ def send_welcome(message):
             Bot.send_message(user_id, "Привет 🤝\n❌ У тебя нету доступа.\nОбратись пожалуйста к @oka_admin_777")
             Bot.send_message(user_id, f"Твой ID: {user_id}")
             NEW_USER_TEMPLATE = (
-                "🆕 <b>Новый пользователь</b>/n"
-                f"👤 <b>ID:</b> <code>{user_id}</code>/n"
-                f"{full_name}/n"
-                f"🕐 <b>Время:</b>/n"
+                "🆕 <b>Новый пользователь</b>\n"
+                f"👤 <b>ID:</b> <code>{user_id}</code>\n"
+                f"{full_name}\n"
+                f"🕐 <b>Время:</b>\n"
                 f'🔍 <a href="https://t.me/{bot_username}?start=user_{user_id}">Открыть в боте</a>'
             )
+            print (NEW_USER_TEMPLATE)
             Bot.send_message(admins_id, NEW_USER_TEMPLATE, parse_mode="HTML")
 
 
