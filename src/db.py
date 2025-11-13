@@ -4,6 +4,7 @@ import os
 from mysql.connector import MySQLConnection, Error  # Добавляем функцию MySQLConnection
 from dotenv import load_dotenv
 from time import time
+from src import logger
 
 #import logging
 
