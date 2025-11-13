@@ -2,8 +2,6 @@ __pycache__/
 env/
 .vscode
 .env
-logs/
-/logs
 
 # Byte-compiled / optimized / DLL files
 *.py[cod]
