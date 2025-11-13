@@ -23,6 +23,7 @@ my_host = os.getenv('my_host')
 my_port = os.getenv('my_port')
 bot_tokken = os.getenv('bot_tokken')
 admins_id = os.getenv('admins_id')
+bot_username = os.getenv('bot_username')
 
 Bot = telebot.TeleBot(bot_tokken)
 
@@ -63,9 +64,9 @@ def send_welcome(message):
         all_users = db.get_all_users(1)
         Bot.send_message(user_id, "Привет 🤝\nРад видеть вас снова")
         if int(user_id) in all_users:
-            Bot.send_message(user_id, "✅ Теперь я буду уведомлять тебя о звонках на номер Taxi")
+            Bot.send_message(user_id, "✅ Теперь я буду уведомлять тебя о пользователях")
         else:
-            Bot.send_message(user_id, "❌ У тебя нету доступа.\nОбратись пожалуйста к @RasulovDD")
+            Bot.send_message(user_id, "❌ У тебя нету доступа.\nОбратись пожалуйста к @oka_admin_777")
             Bot.send_message(user_id, f"Твой ID: {user_id}")
     else:
         if int(user_id) == int(admins_id):
@@ -75,10 +76,19 @@ def send_welcome(message):
 
         all_users = db.get_all_users(1)
         if int(user_id) in all_users:
-            Bot.send_message(user_id, "Привет 🤝\n✅ Теперь я буду уведомлять тебя о звонках на номер Taxi")
+            Bot.send_message(user_id, "Привет 🤝\n✅ Теперь я буду уведомлять тебя о пользователях")
         else:
-            Bot.send_message(user_id, "Привет 🤝\n❌ У тебя нету доступа.\nОбратись пожалуйста к @RasulovDD")
+            Bot.send_message(user_id, "Привет 🤝\n❌ У тебя нету доступа.\nОбратись пожалуйста к @oka_admin_777")
             Bot.send_message(user_id, f"Твой ID: {user_id}")
+            NEW_USER_TEMPLATE = (
+                "🆕 <b>Новый пользователь</b>/n"
+                f"👤 <b>ID:</b> <code>{user_id}</code>/n"
+                f"{full_name}/n"
+                f"🕐 <b>Время:</b>/n"
+                f'🔍 <a href="https://t.me/{bot_username}?start=user_{user_id}'>Открыть в боте</a>"
+            )
+            Bot.send_message(admins_id, NEW_USER_TEMPLATE, parse_mode="HTML")
+
 
     if app_debug == "1":
         logger.info(f'[BOT] [UserID: {user_id}] Сообщение отправлено')
@@ -106,7 +116,7 @@ def command_admin(message):
 
         db.set_admin(manager_id, 1)
         Bot.send_message(user_id, f"✅ UserID: {manager_id} Права админа, выданы")
-        Bot.send_message(manager_id, "✅ Доступ получен!\nТеперь я буду уведомлять тебя о звонках на номер taxi")
+        Bot.send_message(manager_id, "✅ Доступ получен!\nТеперь я буду уведомлять тебя о пользователях")
         if app_debug == "1":
             logger.info(f'[BOT] [UserID: {user_id}] Добавил менеджера {manager_id}')
     else:
