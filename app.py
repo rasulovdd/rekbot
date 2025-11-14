@@ -87,7 +87,7 @@ def send_welcome(message):
                 f"🕐 <b>Время:</b>\n"
                 f'🔍 <a href="https://t.me/{bot_username}?start=user_{user_id}">Открыть в боте</a>'
             )
-            print (NEW_USER_TEMPLATE)
+            print(NEW_USER_TEMPLATE)
             Bot.send_message(admins_id, NEW_USER_TEMPLATE, parse_mode="HTML")
 
 
