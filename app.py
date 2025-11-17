@@ -61,6 +61,7 @@ Bot.set_my_commands(
 def send_welcome(message):
     user_id = message.from_user.id
     full_name = message.from_user.full_name
+    username = message.from_user.username
     
     markup = telebot.types.InlineKeyboardMarkup()
     
@@ -92,6 +93,7 @@ def send_welcome(message):
             text = NEW_USER_TEMPLATE.format(
                 user_id=user_id,
                 full_name=full_name,
+                username=username,
                 bot_username=bot_username
             )
             Bot.send_message(admins_id, text, parse_mode="HTML")
