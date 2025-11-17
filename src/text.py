@@ -24,6 +24,7 @@ NEW_USER_TEMPLATE = """
 
 👤 <b>ID:</b> <code>{user_id}</code>
 📝 <b>Имя:</b> {full_name}
+🔗 <b>Username:</b> @{username}
 
 🔍 <a href="https://t.me/{bot_username}?start=user_{user_id}">Открыть в боте</a>
 """
